@@ -13,6 +13,12 @@ class CfgFunctions
 			class generateCrater {};
 		};
 		
+		class misc_fncs
+		{
+			file = "freestylesNuclearBlast\misc";
+			class applyDamage {};
+		};
+		
 		class init_fnc
 		{
 			file = "freestylesNuclearBlast\init";

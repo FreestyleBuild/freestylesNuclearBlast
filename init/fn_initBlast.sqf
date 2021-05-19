@@ -23,6 +23,10 @@ params["_origin", "_yield", ["_debug", true], ["_effects", [true, true, true, tr
 private ["_radFireball", "_rad1psi", "_rad5psi", "_rad20psi", "_rad5000rem", "_rad500rem", "_rad100thermal", "_rad50thermal", "_radCrater"];
 
 
+//check if ace medical is active, could be moved into a init function
+missionNamespace setVariable ["FNB_aceActivated", isClass(configFile >> "CfgPatches" >> "ace_medical"), true];
+
+
 //calculate radii for different effects
 _radFireball = (_yield ^ 0.39991) * 79.30731 - 0.33774;
 _rad1psi = (_yield ^ 0.33308) * 1179.03371;
@@ -35,8 +39,10 @@ _rad50thermal = (_yield ^ 0.9993) * 283.0527 + (_yield ^ 5) * 9.10689e-22 + (_yi
 _radCrater = (_yield ^ 0.3342305) * 19.13638 + 0.4707669;
 
 
-
+//debug outputs
 if (_debug) then {
+
+	systemChat str(FNB_aceActivated);
 
 	hint formatText ["Fireball: %1 m %2 1 psi: %3 m %2 5 psi: %4 m %2 20 psi: %5 m %2 500 rem: %6 m %2 5000 rem: %7 m %2 100 Thermal: %8 m %2 50 Thermal: %9 m %2 Crater: %10 m %2", _radFireball, lineBreak, _rad1psi, _rad5psi, _rad20psi, _rad500rem, _rad5000rem, _rad100thermal, _rad50thermal, _radCrater];
 
@@ -91,6 +97,7 @@ if (_debug) then {
 };
 
 
+//crater generation
 if (_effects # 0) then
 {
 	[_origin, _radCrater] call freestylesNuclearBlast_fnc_generateCrater;

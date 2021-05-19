@@ -31,7 +31,7 @@ _hideObjs append ([_position # 0, _position # 1, 0] nearObjects _radius);
 
 //hide the objects
 {
-	if ((local _x && isDamageAllowed _x) and not (isPlayer _x)) then 
+	if ((isDamageAllowed _x) and not (isPlayer _x)) then 
 	{
 		_x hideObjectGlobal true;
 	};	
