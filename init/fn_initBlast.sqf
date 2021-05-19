@@ -20,7 +20,7 @@ Arguments:
 
 params["_origin", "_yield", ["_debug", true], ["_effects", [true, true, true, true]]];
 
-private ["_radFireball", "_rad1psi", "_rad5psi", "_rad20psi", "_rad5000rem", "_rad500rem", "_rad100thermal", "_rad50thermal", "_radCrater"];
+private ["_radFireball", "_rad1psi", "_rad5psi", "_rad20psi", "_rad5000rem", "_rad500rem", "_rad100thermal", "_rad50thermal", "_radCrater", "_radiationScript"];
 
 
 //check if ace medical is active, could be moved into a init function
@@ -97,8 +97,18 @@ if (_debug) then {
 };
 
 
+//radiation and heat damage
+if (_effects # 2) then 
+{
+	_radiationScript = [_origin, _rad5000rem, _rad500rem, _rad100thermal, _rad50thermal] spawn freestylesNuclearBlast_fnc_radiationDamage;
+	waitUntil {scriptDone _radiationScript};
+};
+
+
 //crater generation
 if (_effects # 0) then
 {
 	[_origin, _radCrater] call freestylesNuclearBlast_fnc_generateCrater;
 };
+
+
