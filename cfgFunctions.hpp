@@ -17,6 +17,7 @@ class CfgFunctions
 		{
 			file = "freestylesNuclearBlast\misc";
 			class applyDamage {};
+			class damageOverTime {};
 		};
 		
 		class init_fnc
