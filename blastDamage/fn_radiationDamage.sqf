@@ -69,7 +69,7 @@ _radiationDamage = [];
 	//adjust if 5000 rem applies
 	if ((_position distance _x) < _100burn) then
 	{
-		_baseDam = 0.4;
+		_baseDam = 0.2;
 	};
 	
 	

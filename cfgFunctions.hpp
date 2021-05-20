@@ -24,7 +24,9 @@ class CfgFunctions
 		class init_fnc
 		{
 			file = "freestylesNuclearBlast\init";
-			class initBlast{}; //freestylesNuclearBlast_fnc_initBlast
+			class initBlast {}; //freestylesNuclearBlast_fnc_initBlast
+			class debugOutput {};
+			class calculateRanges {};
 		};
 	};
 };
