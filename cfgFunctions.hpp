@@ -12,6 +12,7 @@ class CfgFunctions
 			file = "freestylesNuclearBlast\blastDamage";
 			class generateCrater {};
 			class radiationDamage {};
+			class shockwave {};
 		};
 		
 		class misc_fncs
@@ -19,6 +20,8 @@ class CfgFunctions
 			file = "freestylesNuclearBlast\misc";
 			class applyDamage {};
 			class damageOverTime {};
+			class damageBuildings {};
+			class ragdollUnits {};
 		};
 		
 		class init_fnc

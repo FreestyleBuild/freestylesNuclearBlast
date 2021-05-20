@@ -34,6 +34,7 @@ _hideObjs append ([_position # 0, _position # 1, 0] nearObjects _radius);
 	if ((isDamageAllowed _x) and not (isPlayer _x)) then 
 	{
 		_x hideObjectGlobal true;
+		_x setDamage [1, false]; //destroy objects, does not need to be ace compatible
 	};	
 } forEach _hideObjs;
 
