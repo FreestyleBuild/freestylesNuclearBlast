@@ -20,7 +20,6 @@ params["_duration", "_intensity", "_fadeIn"];
 
 private ["_colorInv", "_chromAbb", "_filmGrain", "_ppEffects"];
 
-systemChat str(_intensity);
 
 _colorInv = ["ColorInversion", 2500, [-0.5 * _intensity / 4, -0.5 * _intensity / 4, -0.5 * _intensity / 4], _duration, _fadeIn];
 _chromAbb = ["ChromAberration", 200, [0.05, 0.05, true], _duration, _fadeIn];
