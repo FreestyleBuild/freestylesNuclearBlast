@@ -28,5 +28,12 @@ class CfgFunctions
 			class debugOutput {};
 			class calculateRanges {};
 		};
+		
+		class ui_effects
+		{
+			file = "freestylesNuclearBlast\uiEffects";
+			class radiatedUI {};
+			class spawnRadiationEffects {};
+		};
 	};
 };

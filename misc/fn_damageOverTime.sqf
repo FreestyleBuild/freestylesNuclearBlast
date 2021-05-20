@@ -6,6 +6,7 @@ Applies damage to an array of characters over a period of time, itervall between
 Uses freestylesNuclearBlast_fnc_applyDamage to damage the unit itself.
 Spawn this funtionc on server only.
 
+!!!Modifies damage array!!!
 
 Arguments:
 
@@ -20,7 +21,6 @@ Arguments:
 params["_units", "_damage", "_time", "_ticks", ["_aceType", "explosive"]];
 
 private["_tickTime"];
-
 
 //calculate delay between ticks
 _tickTime = _time / _ticks;

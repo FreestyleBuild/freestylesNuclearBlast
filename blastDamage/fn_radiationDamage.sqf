@@ -13,18 +13,19 @@ Arguments:
 2 - number, radius for 500 rem radiation (likely lethal within 1 month)
 3 - number, radius for guaranteed 3rd degree burns
 4 - number, radius for 50% chance of 3rd degree burns
+5 - number, time in which radiation damage is applied
 
 */
 
 
-params["_position", "_5000rem", "_500rem", "_100burn", "_50burn"];
+params["_position", "_5000rem", "_500rem", "_100burn", "_50burn", "_duration"];
 
 private["_burnedUnits", "_radiatedUnits", "_burnDamage", "_radiationDamage", "_baseDam"];
 
 
 //get affected Units
-_burnedUnits = _position nearObjects ["Man", _50burn];
-_radiatedUnits = _position nearObjects ["Man", _500rem];
+_burnedUnits = _position nearEntities ["Man", _50burn];
+_radiatedUnits = _position nearEntities ["Man", _500rem];
 
 
 //variable to store damage amount
@@ -86,8 +87,13 @@ _radiationDamage = [];
 //instantly for burns
 [_burnedUnits, _burnDamage, "ropeburn"] call freestylesNuclearBlast_fnc_applyDamage;
 
+//spawn ui effects for players
+[_radiatedUnits, _radiationDamage, _duration] spawn freestylesNuclearBlast_fnc_spawnRadiationEffects;
+
 //overtime for radiation (5 minutes)
-[_radiatedUnits, _radiationDamage, 300, 150, "ropeburn"] spawn freestylesNuclearBlast_fnc_damageOverTime;
+[_radiatedUnits, _radiationDamage, _duration, 150, "ropeburn"] spawn freestylesNuclearBlast_fnc_damageOverTime;
+
+
 
 
 

@@ -41,7 +41,7 @@ if (_debug) then
 //radiation and heat damage
 if (_effects # 2) then 
 {
-	_radiationScript = [_origin, _rad5000rem, _rad500rem, _rad100thermal, _rad50thermal] spawn freestylesNuclearBlast_fnc_radiationDamage;
+	_radiationScript = [_origin, _rad5000rem, _rad500rem, _rad100thermal, _rad50thermal, 300] spawn freestylesNuclearBlast_fnc_radiationDamage;
 	waitUntil {scriptDone _radiationScript};
 };
 
