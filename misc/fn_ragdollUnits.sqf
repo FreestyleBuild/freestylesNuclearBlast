@@ -32,15 +32,17 @@ _oldState = [];
 	};
 
 
-	if ((not(isPlayer _x)) or (count (weapons _x) > 0)) then
+	if (((not(isPlayer _x)) or (count (weapons _x) > 0)) and (isDamageAllowed _x)) then
 	{
 		_vector = _position vectorFromTo (getPosASL _x);
-		_x addForce [_vector vectorMultiply _force, _x selectionPosition "spine"];
+		_vector set [2, 1];
+		_x addForce [_vector vectorMultiply _force, _x selectionPosition "spine3"];
 	};	
 } forEach _units;
 
 
-sleep _delay;
+//wait atleats 5 seconds
+sleep (_delay min 5);
 
 {
 	[_x, (_oldState # _forEachIndex)] remoteExecCall ["setUnconscious", _x] ;

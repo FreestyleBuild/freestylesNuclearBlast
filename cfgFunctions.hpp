@@ -13,6 +13,9 @@ class CfgFunctions
 			class generateCrater {};
 			class radiationDamage {};
 			class shockwave {};
+			class 20psiEffects {};
+			class 5psiEffects {};
+			class 1psiEffects {};
 		};
 		
 		class misc_fncs
@@ -22,6 +25,7 @@ class CfgFunctions
 			class damageOverTime {};
 			class damageBuildings {};
 			class ragdollUnits {};
+			class throwVehicles {};
 		};
 		
 		class init_fnc

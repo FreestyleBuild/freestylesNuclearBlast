@@ -20,7 +20,7 @@ Arguments:
 
 params["_origin", "_yield", ["_debug", true], ["_effects", [true, true, true, true]]];
 
-private ["_radiationScript"];
+private ["_radiationScript", "_shockwaveScript"];
 
 
 //check if ace medical is active, could be moved into a init function
@@ -45,6 +45,12 @@ if (_effects # 2) then
 	waitUntil {scriptDone _radiationScript};
 };
 
+
+//blast wave damage
+if(_effects # 1) then
+{
+	_shockwaveScript = [_origin, _rad20psi, _rad5psi, _rad1psi] spawn freestylesNuclearBlast_fnc_shockwave;
+};
 
 //crater generation
 if (_effects # 0) then
