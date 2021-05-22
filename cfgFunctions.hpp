@@ -5,6 +5,12 @@ class CfgFunctions
 		class blast_fx
 		{
 			file = "freestylesNuclearBlast\blastFx";
+			class spikeSpawner {};
+			class smokeSpikes {};
+			class dustWave {};
+			class soundFX {};
+			class flash {};
+			class effectsControll {};
 		};
 		
 		class blast_damage
