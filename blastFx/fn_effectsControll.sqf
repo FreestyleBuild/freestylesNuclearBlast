@@ -64,7 +64,7 @@ if (_effects # 1) then
 //create lingering smoke
 if (_effects # 5) then
 {
-	[_object, 20, 2, _lifetimeLong] remoteExec ["freestylesNuclearBlast_fnc_smoke", 0];
+	[_object, _radFireball / 4, 2, _lifetimeLong] remoteExec ["freestylesNuclearBlast_fnc_smoke", 0];
 };
 
 //sound effects
