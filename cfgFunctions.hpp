@@ -11,6 +11,8 @@ class CfgFunctions
 			class soundFX {};
 			class flash {};
 			class effectsControll {};
+			class condensationRing {};
+			class smoke {};
 		};
 		
 		class blast_damage

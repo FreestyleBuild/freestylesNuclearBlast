@@ -11,13 +11,13 @@ Arguments:
 1 - number, fireball radius
 */
 
+if (!hasInterface) exitWith {};
+
 
 params["_object", "_radius"];
 
 private["_light", "_brigthness", "_fire"];
 
-
-if (!hasInterface) exitWith {};
 
 
 //create light source
