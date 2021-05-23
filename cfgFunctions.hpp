@@ -13,6 +13,7 @@ class CfgFunctions
 			class effectsControll {};
 			class condensationRing {};
 			class smoke {};
+			class mushroomCloud {};
 		};
 		
 		class blast_damage

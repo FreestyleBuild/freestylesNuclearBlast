@@ -20,6 +20,7 @@ Arguments:
 	6 - fireball and light
 	7 - condensation rings
 	8 - lingering smoke
+	9 - mushroom cloud
 
 */
 
@@ -29,7 +30,7 @@ if (!isServer) exitWith
 	systemChat "Warning: Execute Freestyles Nuclear Blast script only on server/singlerplayer";
 };
 
-params["_origin", "_yield", ["_debug", true], ["_effects", [true, true, true, true, true, true, true, true, true]]];
+params["_origin", "_yield", ["_debug", true], ["_effects", [true, true, true, true, true, true, true, true, true, true]]];
 
 private ["_radiationScript", "_shockwaveScript", "_spikesLarge", "_spikesSmall"];
 

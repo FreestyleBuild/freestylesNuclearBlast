@@ -16,7 +16,7 @@ if (!hasInterface) exitWith {};
 
 params["_object", "_radius"];
 
-private["_light", "_brigthness", "_fire"];
+private["_light", "_brigthness", "_fire", "_height"];
 
 
 
@@ -90,7 +90,7 @@ for "_i" from 1 to 13 do
 //set color to orange to illuminate the fireball/effects
 _light setLightColor [1,0.3,0];
 _light setLightDayLight true;
-
+_light setLightFlareSize _radius;
 
 //increase brighness (0.5 sec)
 for "_i" from 1 to 25 do 
@@ -101,12 +101,29 @@ for "_i" from 1 to 25 do
 };
 
 
-// let light fade out (~30 sec)
+//let light shine for a bit and rise with the clouds (30 sec)
+_height = 0;
+
+for "_i" from 1 to 3000 do
+{
+	_height = _height + _radius / 3000;
+	_light lightAttachObject [_object,[0,0,_height]];
+	sleep 0.01;
+};
+
+
+
+// let light fade out (~10 sec)
+_light setLightUseFlare false;
+
 while{_brigthness > 0} do 
 {
 		_brigthness = _brigthness + (random [-5, -2, -1]);
+		_height = _height + _radius / 100;
+		
 		_light setLightBrightness _brigthness;
-		sleep 0.3;
+		
+		sleep 0.1;
 };
 
 
