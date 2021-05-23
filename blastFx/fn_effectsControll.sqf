@@ -117,7 +117,7 @@ if (_effects # 4) then
 
 if ((_effects # 6) and (_yield > 2.5)) then
 {
-	[_object, _radFireball, _rad20psi, _rad20psi * 1.4, _lifetimeLong, 20] call freestylesNuclearBlast_fnc_mushroomCloud;
+	[_object, _radFireball, _rad20psi, _rad20psi * 1.4, _lifetimeLong, 50] call freestylesNuclearBlast_fnc_mushroomCloud;
 };
 
 sleep 60;
