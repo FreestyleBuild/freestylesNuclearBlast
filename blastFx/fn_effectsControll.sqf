@@ -22,7 +22,7 @@ Arguments:
 5 - number, lifetime for schort lived particles
 */
 
-params["_position", "_yield", "_effects","_radFireball", "_rad20psi", "_rad1psi", "_lifetimeLong", "_lifetimeShort", "_spikeSize", "_spikeSpeed"];
+params["_position", "_yield", "_effects","_radFireball", "_rad20psi", "_rad1psi", "_lifetimeLong", "_lifetimeShort", "_spikeSize", "_spikeSpeed", "_spikeScript"];
 
 private["_object", "_spikesLarge", "_spikesSmall", "_n"];
 
@@ -40,24 +40,50 @@ if (_effects # 0) then
 	if (_yield <= 2.5) then
 	{
 		
+		//large spikes
 		_spikeSpeed = 70;
-		_spikesLarge = [_position, ceil (random 3) + 7, _spikeSpeed, "B_556x45_Ball"] call freestylesNuclearBlast_fnc_spikeSpawner;
+		_spikesLarge = [];
+		
+		_spikeScript = [_position, ceil (random 3) + 7, _spikeSpeed, "B_556x45_Ball", _spikesLarge] spawn freestylesNuclearBlast_fnc_spikeSpawner;
+		
+		waitUntil {scriptDone _spikeScript};
+		
 		[_spikesLarge, _radFireball / 2, 1.5 * _rad20psi / _spikeSpeed, _radFireball / (1.5 * _rad20psi) / 2, _lifetimeLong, 0] remoteExec ["freestylesNuclearBlast_fnc_smokeSpikes", 0];
 		
+		
+		//small spikes
 		_spikeSpeed = 90;
-		_spikesSmall = [_position, ceil (random 5) + 15, _spikeSpeed, "B_556x45_Ball"] call freestylesNuclearBlast_fnc_spikeSpawner;
+		_spikesSmall = [];
+		
+		_spikeScript = [_position, ceil (random 5) + 15, _spikeSpeed, "B_556x45_Ball", _spikesSmall] spawn freestylesNuclearBlast_fnc_spikeSpawner;
+		
+		waitUntil {scriptDone _spikeScript};
+		
 		[_spikesSmall, _radFireball / 4, 2 * _rad20psi / _spikeSpeed, _radFireball / 2 / (2 * _rad20psi), _lifetimeLong, 0] remoteExec ["freestylesNuclearBlast_fnc_smokeSpikes", 0];
 	}
 	else
 	{
+		//large spikes
 		_spikeSize =  (_radFireball / 2) min 100;
 		_spikeSpeed = 75;
-		_spikesLarge = [_position, ceil (random 3) + 5, _spikeSpeed, "B_556x45_Ball"] call freestylesNuclearBlast_fnc_spikeSpawner;
+		_spikesLarge = [];
+		
+		_spikeScript = [_position, ceil (random 3) + 5, _spikeSpeed, "B_556x45_Ball", _spikesLarge] spawn freestylesNuclearBlast_fnc_spikeSpawner;
+		
+		waitUntil {scriptDone _spikeScript};
+		
 		[_spikesLarge, _spikeSize, 1.5 * _rad20psi / _spikeSpeed, _spikeSize / (1.5 * _rad20psi), _lifetimeShort, 0.1] remoteExec ["freestylesNuclearBlast_fnc_smokeSpikes", 0];
 	
+		
+		//small spikes
 		_spikeSize =  (_radFireball / 4) min 50;
 		_spikeSpeed = 100;
-		_spikesSmall = [_position, ceil (random 5) + 10, _spikeSpeed, "B_556x45_Ball"] call freestylesNuclearBlast_fnc_spikeSpawner;
+		_spikesSmall = [];
+		
+		_spikeScript = [_position, ceil (random 5) + 10, _spikeSpeed, "B_556x45_Ball", _spikesSmall] spawn freestylesNuclearBlast_fnc_spikeSpawner;
+		
+		waitUntil {scriptDone _spikeScript};
+		
 		[_spikesSmall, _spikeSize, 2 * _rad20psi / _spikeSpeed, _spikeSize / (2 * _rad20psi), _lifetimeShort, 0.1] remoteExec ["freestylesNuclearBlast_fnc_smokeSpikes", 0];
 	};
 };
@@ -117,10 +143,10 @@ if (_effects # 4) then
 
 if ((_effects # 6) and (_yield > 2.5)) then
 {
-	[_object, _radFireball, _rad20psi, _rad20psi * 1.4, _lifetimeLong, 50] call freestylesNuclearBlast_fnc_mushroomCloud;
+	[_object, _radFireball, _rad20psi, _rad20psi * 1.4, _lifetimeLong, 50] remoteExec ["freestylesNuclearBlast_fnc_mushroomCloud", 0];
 };
 
-sleep 60;
+sleep (((_rad20psi * 1.4) / 50) + 30);
 
 //delete object
 deleteVehicle _object;

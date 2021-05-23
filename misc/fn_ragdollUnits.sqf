@@ -36,7 +36,7 @@ _oldState = [];
 	{
 		_vector = _position vectorFromTo (getPosASL _x);
 		_vector set [2, 1];
-		_x addForce [_vector vectorMultiply _force, _x selectionPosition "spine3"];
+		[_x, [_vector vectorMultiply _force, _x selectionPosition "spine3"]] remoteExecCall ["addForce", _x];
 	};	
 } forEach _units;
 

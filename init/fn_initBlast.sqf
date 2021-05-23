@@ -71,7 +71,7 @@ if (_effects # 0) then
 };
 
 
-//effect controll
+//effects controll
 _effects deleteRange [0, 3];
 
 [_origin, _yield, _effects, _radFireball, _rad20psi, _rad1psi, 300, 40] spawn freestylesNuclearBlast_fnc_effectsControll;

@@ -11,14 +11,13 @@ Arguments:
 1 - number, amount of spikes to spawn
 2 - number, speed of spikes
 3 - type name, type of object to spawn
+4 - array, array to put spike in
 */
 
-params["_position", "_amount", "_speed", "_type"];
+params["_position", "_amount", "_speed", "_type", "_spikes"];
 
-private["_spikes", "_obj", "_direction"];
+private["_obj", "_direction"];
 
-
-_spikes = [];
 
 
 for "_i" from 1 to _amount do
@@ -29,7 +28,7 @@ for "_i" from 1 to _amount do
 	
 	//launch it
 	_direction = vectorNormalized [random(200) - 100, random(200) - 100, 120];
-	_obj setVelocity (_direction vectorMultiply _speed);
+	[_obj ,(_direction vectorMultiply _speed)] remoteExec ["setVelocity", 0];
 	
 	_spikes pushBack _obj;
 };
