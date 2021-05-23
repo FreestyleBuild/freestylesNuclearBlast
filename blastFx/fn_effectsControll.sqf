@@ -22,7 +22,7 @@ Arguments:
 5 - number, lifetime for schort lived particles
 */
 
-params["_position", "_yield", "_effects","_radFireball", "_rad20psi", "_rad1psi", "_lifetimeLong", "_lifetimeShort", "_spikeSize"];
+params["_position", "_yield", "_effects","_radFireball", "_rad20psi", "_rad1psi", "_lifetimeLong", "_lifetimeShort", "_spikeSize", "_spikeSpeed"];
 
 private["_object", "_spikesLarge", "_spikesSmall", "_n"];
 
@@ -40,21 +40,25 @@ if (_effects # 0) then
 	if (_yield <= 2.5) then
 	{
 		
-		_spikesLarge = [_position, ceil (random 3) + 5, 60, "G_40mm_HE"] call freestylesNuclearBlast_fnc_spikeSpawner;
-		[_spikesLarge, _radFireball / 2, 1.5 * _rad20psi / 60, _radFireball / (1.5 * _rad20psi) / 2, _lifetimeLong] remoteExec ["freestylesNuclearBlast_fnc_smokeSpikes", 0];
+		_spikeSpeed = 70;
+		_spikesLarge = [_position, ceil (random 3) + 7, _spikeSpeed, "B_556x45_Ball"] call freestylesNuclearBlast_fnc_spikeSpawner;
+		[_spikesLarge, _radFireball / 2, 1.5 * _rad20psi / _spikeSpeed, _radFireball / (1.5 * _rad20psi) / 2, _lifetimeLong, 0] remoteExec ["freestylesNuclearBlast_fnc_smokeSpikes", 0];
 		
-		_spikesSmall = [_position, ceil (random 5) + 10, 80, "G_40mm_HE"] call freestylesNuclearBlast_fnc_spikeSpawner;
-		[_spikesSmall, _radFireball / 4, 2 * _rad20psi / 80, _radFireball / 2 / (2 * _rad20psi), _lifetimeLong] remoteExec ["freestylesNuclearBlast_fnc_smokeSpikes", 0];
+		_spikeSpeed = 90;
+		_spikesSmall = [_position, ceil (random 5) + 15, _spikeSpeed, "B_556x45_Ball"] call freestylesNuclearBlast_fnc_spikeSpawner;
+		[_spikesSmall, _radFireball / 4, 2 * _rad20psi / _spikeSpeed, _radFireball / 2 / (2 * _rad20psi), _lifetimeLong, 0] remoteExec ["freestylesNuclearBlast_fnc_smokeSpikes", 0];
 	}
 	else
 	{
 		_spikeSize =  (_radFireball / 2) min 100;
-		_spikesLarge = [_position, ceil (random 3) + 5, 60, "G_40mm_HE"] call freestylesNuclearBlast_fnc_spikeSpawner;
-		[_spikesLarge, _spikeSize, 1.5 * _rad20psi / 60, _spikeSize / (1.5 * _rad20psi), _lifetimeShort] remoteExec ["freestylesNuclearBlast_fnc_smokeSpikes", 0];
+		_spikeSpeed = 75;
+		_spikesLarge = [_position, ceil (random 3) + 5, _spikeSpeed, "B_556x45_Ball"] call freestylesNuclearBlast_fnc_spikeSpawner;
+		[_spikesLarge, _spikeSize, 1.5 * _rad20psi / _spikeSpeed, _spikeSize / (1.5 * _rad20psi), _lifetimeShort, 0.1] remoteExec ["freestylesNuclearBlast_fnc_smokeSpikes", 0];
 	
 		_spikeSize =  (_radFireball / 4) min 50;
-		_spikesSmall = [_position, ceil (random 5) + 10, 80, "G_40mm_HE"] call freestylesNuclearBlast_fnc_spikeSpawner;
-		[_spikesSmall, _spikeSize, 2 * _rad20psi / 80, _spikeSize / (2 * _rad20psi), _lifetimeShort] remoteExec ["freestylesNuclearBlast_fnc_smokeSpikes", 0];
+		_spikeSpeed = 100;
+		_spikesSmall = [_position, ceil (random 5) + 10, _spikeSpeed, "B_556x45_Ball"] call freestylesNuclearBlast_fnc_spikeSpawner;
+		[_spikesSmall, _spikeSize, 2 * _rad20psi / _spikeSpeed, _spikeSize / (2 * _rad20psi), _lifetimeShort, 0.1] remoteExec ["freestylesNuclearBlast_fnc_smokeSpikes", 0];
 	};
 };
 
@@ -99,9 +103,9 @@ if (_effects # 4) then
 		
 		
 		//create the rings
-		for "_i" from 0 to _n do 
+		for "_i" from 0 to (_n - 1) do 
 		{
-			[_object, _rad20psi * 0.5 + _i * _radFireball * 0.5, _radFireball - (_i + 1) * _radFireball * 0.1, 7, _lifetimeShort] remoteExec ["freestylesNuclearBlast_fnc_condensationRing", 0];
+			[_object, _rad20psi * 0.75 + _i * _radFireball * 0.5, _radFireball - (_i + 1) * _radFireball * 0.1, 7, _lifetimeShort] remoteExec ["freestylesNuclearBlast_fnc_condensationRing", 0];
 			sleep 0.5;
 		};
 
