@@ -11,13 +11,14 @@ Arguments:
 1 - number, 20psi radius
 2 - number, 5psi radius
 3 - number, 1psi radius
+5 - number, fire prop, use -1 to disable
 
 */
 
 
-params ["_position", "_rad20psi", "_rad5psi", "_rad1psi"];
+params ["_position", "_rad20psi", "_rad5psi", "_rad1psi", "_fires"];
 
-private["_trees", "_buildings", "_vehicles", "_units", "_ringWidth", "_iterationN", "_currentRadius", "_indexBuildings", "_currentBuildings", "_currentUnits", "_currentVehicles"];
+private["_trees", "_buildings", "_vehicles", "_units", "_ringWidth", "_iterationN", "_currentRadius", "_currentBuildings", "_currentUnits", "_currentVehicles"];
 
 
 //get affected objects, sorted by proximity (except for trees)
@@ -57,11 +58,7 @@ for "_i" from 1 to _iterationN do
 		_currentRadius = _currentRadius + _ringWidth;
 	};
 	
-	//index variables for sorted arrays
-	_indexBuildings = 0;
-	_indexVehicles = 0;
-	_indexUnits = 0;
-	
+
 	
 	//arrays for currently affected objects
 	_currentBuildings = [];
@@ -69,17 +66,10 @@ for "_i" from 1 to _iterationN do
 	_currentUnits = [];
 	
 	
-	//get currently affected buildings	
-	{
-		if ((_x distance _position) <= _currentRadius) then
-		{
-			_indexBuildings = _forEachIndex;
-			_currentBuildings pushBack _x;
-		};
-	} forEach _buildings;
-	
+	//get currently affected buildings
+	_currentBuildings = _buildings select {(_x distance _position) <= _currentRadius};
 	//remove affected buildings from main array
-	_buildings deleteRange [0, _indexBuildings + 1];
+	_buildings = _buildings select {(_x distance _position) > _currentRadius};
 	
 	
 	//get currently affected vehicles
@@ -103,7 +93,7 @@ for "_i" from 1 to _iterationN do
 	{
 		if(_currentRadius <= _rad5psi) then
 		{
-			[_position, (_currentRadius - _rad20psi) / (_rad5psi - _rad20psi), _currentBuildings, _currentVehicles, _currentUnits] spawn freestylesNuclearBlast_fnc_5psiEffects;
+			[_position, (_currentRadius - _rad20psi) / (_rad5psi - _rad20psi), _currentBuildings, _currentVehicles, _currentUnits, _fires] spawn freestylesNuclearBlast_fnc_5psiEffects;
 		}
 		else
 		{

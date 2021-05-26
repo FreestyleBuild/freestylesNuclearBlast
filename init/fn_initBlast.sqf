@@ -21,16 +21,20 @@ Arguments:
 	7 - condensation rings
 	8 - lingering smoke
 	9 - mushroom cloud
+4 - number, fire propability, use -1 to disable
 
 */
 
 //only execute on the server
 if (!isServer) exitWith
 {
-	systemChat "Warning: Execute Freestyles Nuclear Blast script only on server/singlerplayer";
+	if _debug then
+	{
+		systemChat "Warning: Execute Freestyles Nuclear Blast script only on server/singlerplayer";
+	};
 };
 
-params["_origin", "_yield", ["_debug", true], ["_effects", [true, true, true, true, true, true, true, true, true, true]]];
+params["_origin", "_yield", ["_debug", true], ["_effects", [true, true, true, true, true, true, true, true, true, true]], ["_fires", 0.1]];
 
 private ["_radiationScript", "_shockwaveScript", "_spikesLarge", "_spikesSmall"];
 
@@ -61,7 +65,7 @@ if (_effects # 2) then
 //blast wave damage
 if(_effects # 1) then
 {
-	_shockwaveScript = [_origin, _rad20psi, _rad5psi, _rad1psi] spawn freestylesNuclearBlast_fnc_shockwave;
+	_shockwaveScript = [_origin, _rad20psi, _rad5psi, _rad1psi, _fires] spawn freestylesNuclearBlast_fnc_shockwave;
 };
 
 //crater generation

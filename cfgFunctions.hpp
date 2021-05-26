@@ -53,6 +53,8 @@ class freestylesNuclearBlast
 	class fire
 	{
 		file = "freestylesNuclearBlast\fire";
-		class createFire{};
+		class createFire {};
+		class fireSound {};
+		class spawnFires {};
 	};
 };

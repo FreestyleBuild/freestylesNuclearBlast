@@ -12,11 +12,12 @@ Arguments:
 2 - array of objects, affetced buidlings
 3 - array of objects, affected vehicles
 4 - array of objects, affected units
+5 - number, fire prop, use -1 to disable
 
 */
 
 
-params ["_position", "_distance", "_buildings", "_vehicles", "_units"];
+params ["_position", "_distance", "_buildings", "_vehicles", "_units", "_fires"];
 
 private ["_buildingDamages", "_vehicleDamages", "_unitDamages", "_protectionFactor", "_vehicleKnock"];
 
@@ -32,6 +33,12 @@ _unitDamages = [];
 	_buildingDamages pushBack ((1.5 ^ ((- _distance) ^ 4)) + ((random 0.3) - 0.2));
 } forEach _buildings;
 
+
+//do fires
+if (_fires != -1) then 
+{
+	[_buildings, _fires, 240, 60] spawn freestylesNuclearBlast_fnc_spawnFires;
+};
 
 //calculate damage for vehicles
 {

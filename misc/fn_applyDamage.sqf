@@ -17,6 +17,7 @@ Arguments:
 params["_units", "_damage", ["_aceType", "explosive"]];
 
 
+
 if (_damage isEqualType 0) then
 {
 	{
@@ -40,10 +41,11 @@ if (_damage isEqualType 0) then
 }
 else
 {
+	
 	{
 
 		//dont damage unit which have damage disabled
-		if (isDamageAllowed _x) then
+		if ((isDamageAllowed _x) and (_forEachIndex < (count _damage))) then
 		{
 
 			if (missionNamespace getVariable ["FNB_aceActivated", false]) then
