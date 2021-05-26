@@ -72,7 +72,7 @@ if (_effects # 0) then
 		
 		waitUntil {scriptDone _spikeScript};
 		
-		[_spikesLarge, _spikeSize, 1.5 * _rad20psi / _spikeSpeed, _spikeSize / (1.5 * _rad20psi), _lifetimeShort, 0.1] remoteExec ["freestylesNuclearBlast_fnc_smokeSpikes", 0];
+		[_spikesLarge, _spikeSize, 1.5 * _rad20psi / _spikeSpeed, _spikeSize / (0.25 * _rad20psi), _lifetimeShort, 0.1] remoteExec ["freestylesNuclearBlast_fnc_smokeSpikes", 0];
 	
 		
 		//small spikes
@@ -84,7 +84,7 @@ if (_effects # 0) then
 		
 		waitUntil {scriptDone _spikeScript};
 		
-		[_spikesSmall, _spikeSize, 2 * _rad20psi / _spikeSpeed, _spikeSize / (2 * _rad20psi), _lifetimeShort, 0.1] remoteExec ["freestylesNuclearBlast_fnc_smokeSpikes", 0];
+		[_spikesSmall, _spikeSize, 2 * _rad20psi / _spikeSpeed, _spikeSize / (0.75 * _rad20psi), _lifetimeShort, 0.1] remoteExec ["freestylesNuclearBlast_fnc_smokeSpikes", 0];
 	};
 };
 
