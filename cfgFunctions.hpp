@@ -49,4 +49,10 @@ class freestylesNuclearBlast
 		class radiatedUI {};
 		class spawnRadiationEffects {};
 	};
+	
+	class fire
+	{
+		file = "freestylesNuclearBlast\fire";
+		class createFire{};
+	};
 };
