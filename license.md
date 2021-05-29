@@ -1,3 +1,3 @@
-This work is licensed under the Arma Public License Share Alike
+This work is licensed under the Arma Public License
 
-https://www.bohemia.net/community/licenses/arma-public-license-share-alike
+https://www.bohemia.net/community/licenses/arma-public-license
