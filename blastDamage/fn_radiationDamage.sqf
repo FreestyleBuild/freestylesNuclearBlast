@@ -24,8 +24,8 @@ private["_burnedUnits", "_radiatedUnits", "_burnDamage", "_radiationDamage", "_b
 
 
 //get affected Units
-_burnedUnits = _position nearEntities ["Man", _50burn];
-_radiatedUnits = _position nearEntities ["Man", _500rem];
+_burnedUnits = (ASLtoAGL _position) nearEntities ["Man", _50burn];
+_radiatedUnits = (ASLtoAGL _position) nearEntities ["Man", _500rem];
 
 
 //variable to store damage amount

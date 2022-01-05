@@ -9,7 +9,7 @@ Arguments:
 
 0 - array of objects, units to apply damage to
 1 - array of numbers, amount of damage ranging from 0 to 1, if 2 or higher damage is guaranteed to be lethal. If just a number same damage is applied to all units.
-3 - ace damage type, optional, used is FNB_aceActivated is true
+3 - ace damage type, optional, used if FNB_aceActivated is true
 
 */
 
