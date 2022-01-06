@@ -33,6 +33,7 @@ class freestylesNuclearBlast
 		class damageBuildings {};
 		class ragdollUnits {};
 		class throwVehicles {};
+		class aceDamage {};
 	};
 	
 	class init_fnc

@@ -26,9 +26,9 @@ if (_damage isEqualType 0) then
 		if (isDamageAllowed _x) then
 		{
 
-			if (missionNamespace getVariable ["FNB_aceActivated", false]) then
+			if (missionNamespace getVariable ["FNB_aceActivated", false]) then //ACE damage handling
 			{
-				//TODO: handle damage with ace functions
+				[_x, _damage, _aceType] remoteExecCall ["freestylesNuclearBlast_fnc_aceDamage", _x, true];
 			}
 			else
 			{
@@ -48,9 +48,9 @@ else
 		if ((isDamageAllowed _x) and (_forEachIndex < (count _damage))) then
 		{
 
-			if (missionNamespace getVariable ["FNB_aceActivated", false]) then
+			if (missionNamespace getVariable ["FNB_aceActivated", false]) then //ACE damage handling
 			{
-				//TODO: handle damage with ace functions
+				[_x, _damage # _forEachIndex, _aceType] remoteExecCall ["freestylesNuclearBlast_fnc_aceDamage", _x, true];
 			}
 			else
 			{
