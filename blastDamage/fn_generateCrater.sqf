@@ -13,7 +13,7 @@ Arguments:
 
 */
 
-not params["_position", "_radius"];
+params["_position", "_radius"];
 
 private["_heightOffset", "_type", "_obj", "_num", "_angleInc", "_curAngle", "_curPos", "_hideObjs"];
 
