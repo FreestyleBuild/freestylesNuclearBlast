@@ -41,25 +41,25 @@ if (_effects # 0) then
 	{
 		
 		//large spikes
-		_spikeSpeed = 70;
+		_spikeSpeed = 50 * (0.9 * _yield + 0.73);
 		_spikesLarge = [];
 		
 		_spikeScript = [_position, ceil (random 3) + 7, _spikeSpeed, "B_556x45_Ball", _spikesLarge] spawn freestylesNuclearBlast_fnc_spikeSpawner;
 		
 		waitUntil {scriptDone _spikeScript};
 		
-		[_spikesLarge, _radFireball / 2, 1.5 * _rad20psi / _spikeSpeed, _radFireball / (1.5 * _rad20psi) / 2, _lifetimeLong, 0] remoteExec ["freestylesNuclearBlast_fnc_smokeSpikes", 0];
+		[_spikesLarge, _radFireball / 2, 1.5 * (0.9 * _yield + 0.73) * _rad20psi / _spikeSpeed, _radFireball / (1.5 * (0.9 * _yield + 0.73) * _rad20psi) / 1.5, _lifetimeLong, 0] remoteExec ["freestylesNuclearBlast_fnc_smokeSpikes", 0];
 		
 		
 		//small spikes
-		_spikeSpeed = 90;
+		_spikeSpeed = 90 * (0.9 * _yield + 0.73);
 		_spikesSmall = [];
 		
-		_spikeScript = [_position, ceil (random 5) + 15, _spikeSpeed, "B_556x45_Ball", _spikesSmall] spawn freestylesNuclearBlast_fnc_spikeSpawner;
+		_spikeScript = [_position, ceil (random 5) + 20, _spikeSpeed, "B_556x45_Ball", _spikesSmall] spawn freestylesNuclearBlast_fnc_spikeSpawner;
 		
 		waitUntil {scriptDone _spikeScript};
 		
-		[_spikesSmall, _radFireball / 4, 2 * _rad20psi / _spikeSpeed, _radFireball / 2 / (2 * _rad20psi), _lifetimeLong, 0] remoteExec ["freestylesNuclearBlast_fnc_smokeSpikes", 0];
+		[_spikesSmall, _radFireball / 4, (0.9 * _yield + 0.73) * _rad20psi / _spikeSpeed, _radFireball / 2 / ((0.9 * _yield + 0.73) * _rad20psi), _lifetimeLong, 0] remoteExec ["freestylesNuclearBlast_fnc_smokeSpikes", 0];
 	}
 	else
 	{
@@ -119,7 +119,7 @@ if (_effects # 3) then
 
 if (_effects # 4) then
 {
-	if (((fog >= 0.05) || (rain >= 0.05)) && (_yield >= 2.5)) then 
+	if (((fog >= 0.05) || (rain >= 0.05)) && (_yield > 2.5)) then 
 	{
 	
 		//calculate amount of rings
