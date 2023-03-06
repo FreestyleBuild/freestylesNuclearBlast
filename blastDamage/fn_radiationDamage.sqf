@@ -85,13 +85,13 @@ _radiationDamage = [];
 //apply the calculated damage
 
 //instantly for burns
-[_burnedUnits, _burnDamage, "ropeburn"] call freestylesNuclearBlast_fnc_applyDamage;
+[_burnedUnits, _burnDamage, "burn"] call freestylesNuclearBlast_fnc_applyDamage;
 
 //spawn ui effects for players
 [_radiatedUnits, _radiationDamage, _duration] spawn freestylesNuclearBlast_fnc_spawnRadiationEffects;
 
 //overtime for radiation (5 minutes)
-[_radiatedUnits, _radiationDamage, _duration, 150, "ropeburn"] spawn freestylesNuclearBlast_fnc_damageOverTime;
+[_radiatedUnits, _radiationDamage, _duration, 150, "burn"] spawn freestylesNuclearBlast_fnc_damageOverTime;
 
 
 
