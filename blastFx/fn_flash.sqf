@@ -9,14 +9,16 @@ Arguments:
 
 0 - object, source object for fireball
 1 - number, fireball radius
+2 - number, hight to which fireball rises
+3 - numbner, speed at which fireball rises per second
 */
 
 if (!hasInterface) exitWith {};
 
 
-params["_object", "_radius"];
+params["_object", "_radius", "_finalHeight", "_vSpeed"];
 
-private["_light", "_brigthness", "_fire", "_height"];
+private["_light", "_brigthness", "_fire", "_height", "_fade"];
 
 
 
@@ -25,7 +27,7 @@ _brigthness = 10150;
 
 _light = "#lightpoint" createVehicleLocal [0,0,0];
 _light lightAttachObject [_object,[0,0,0]];
-_light setLightBrightness _brigthness;
+_light setLightIntensity _brigthness;
 _light setLightColor [1,1,1];
 _light setLightUseFlare true;
 _light setLightFlareSize (_radius * 15);
@@ -38,92 +40,118 @@ _light setLightFlareMaxDistance 100000;
 _fire = "Sign_Sphere100cm_F" createVehicleLocal [0,0,0];
 _fire attachTo [_object, [0,0,0]];
 
-[_fire, _radius] spawn
+[_fire, _radius * 2.5] spawn
 {
 	params["_f", "_r"];
 	
-	//fireball lifetime 2 sec
-	
-	for "_i" from 1 to 50 do
-	{
-		_f setObjectScale (_r * _i / 50);
-		sleep 0.01;
-	};
 	
 	sleep 0.5;
 	
-	for "_i" from 1 to 50 do
+	//increase size (5 secs)
+	for "_i" from 1 to 50 do 
+	{
+		_f setObjectScale (_r * _i / 50);
+		sleep 0.1;
+	};
+	
+	sleep 2.5;
+	
+	//shrink size (0.5) secs
+	/*for "_i" from 1 to 50 do
 	{
 		_f setObjectScale (_r * (1 - (_i / 50)));
 		sleep 0.01;
-	};
+	};*/
 	
 	deleteVehicle _f;
 };
 
-
-//create initial flash (0.1 sec + 0.1 sec)
-sleep 0.1;
+_light setLightColor [1,0.7,0.3];
+_light setLightAmbient [1,0.7,0.3];
+//create initial flash (0.3 sec + 0.2 sec)
+sleep 0.3;
 for "_i" from 1 to 10 do
 {
-	_brigthness = _brigthness - 1000;
-	_light setLightBrightness _brigthness;
-	sleep 0.01;
+	_brigthness = _brigthness - 750;
+	_light setLightIntensity _brigthness;
+	_light setLightFlareSize (_radius * (_i * (- 14/10) + 15));
+	sleep 0.02;
 };
 
-//increase brigthness to create double flash (0.5 sec)
+
+//increase brigthness to create double flash (4 sec)
 for "_i" from 1 to 50 do
 {
 	_brigthness = _brigthness + 200;
-	_light setLightBrightness _brigthness;
-	sleep 0.01;
+	_light setLightIntensity _brigthness;
+	_light setLightFlareSize (_radius * (_i * (+ 14/50) + 1));
+	sleep 0.08;
 };
 
-//reduce brightness after second flash (0.39 sec)
-for "_i" from 1 to 13 do
+sleep 3;
+
+_height = 0;
+
+//reduce brightness after second flash (10 sec)
+for "_i" from 1 to 100 do
 {
-	_brigthness = _brigthness - 775;
-	_light setLightBrightness _brigthness;
-	sleep 0.03;
+	_brigthness = _brigthness - 100.75;
+	_light setLightIntensity _brigthness;
+	_light setLightFlareSize (_radius * (_i * (- 14/100) + 15));
+	_light setLightColor [1,0.7 - (0.4/100 * _i),0.3  - (0.3/100 * _i)];
+	_light setLightAmbient [1,0.7 - (0.4/100 * _i),0.3  - (0.3/100 * _i)];
+	
+	if (_height < _finalHeight) then
+	{
+		_height = _height + _vSpeed * 0.1;
+		_light lightAttachObject [_object,[0,0,_height]];
+	};
+	sleep 0.1;
 };
 
-//set color to orange to illuminate the fireball/effects
-_light setLightColor [1,0.3,0];
+//illuminate the fireball/effects
+/*_light setLightColor [1,0.3,0];
 _light setLightDayLight true;
-_light setLightFlareSize _radius;
+_light setLightFlareSize _radius;*/
 
 //increase brighness (0.5 sec)
 for "_i" from 1 to 25 do 
 {
 	_brigthness = _brigthness + 5;
-	_light setLightBrightness _brigthness;
+	_light setLightIntensity _brigthness;
+	
+	if (_height < _finalHeight) then
+	{
+		_height = _height + _vSpeed * 0.02;
+		_light lightAttachObject [_object,[0,0,_height]];
+	};
 	sleep 0.02;
 };
 
 
-//let light shine for a bit and rise with the clouds (30 sec)
-_height = 0;
+//let light shine for a bit and rise with the clouds (_finalHeight / _vSpeed seconds)
 
-for "_i" from 1 to 3000 do
+while {_height < _finalHeight} do
 {
-	_height = _height + _radius / 3000;
+	_height = _height + _vSpeed * 0.01;
 	_light lightAttachObject [_object,[0,0,_height]];
+	_light setLightFlareSize (_radius *  (0.5 max (1 - (_height / _finalHeight))));
 	sleep 0.01;
 };
 
 
 
-// let light fade out (~10 sec)
-_light setLightUseFlare false;
+// let light fade out (~20 sec)
+
+
 
 while{_brigthness > 0} do 
-{
-		_brigthness = _brigthness + (random [-5, -2, -1]);
-		_height = _height + _radius / 100;
+{	
+		_fade = (_brigthness / 50) min 10;
+		_brigthness = _brigthness - _fade;		
+		_light setLightIntensity _brigthness;
 		
-		_light setLightBrightness _brigthness;
-		
-		sleep 0.1;
+		sleep 0.05;
 };
 
 

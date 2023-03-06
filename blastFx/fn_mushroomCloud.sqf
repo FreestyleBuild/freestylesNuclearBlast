@@ -11,7 +11,7 @@ Arguments:
 1 - number, size, particle size for mushroom cloud, will be the stems diameter
 2 - number, height of bottom part of the musshroom cloud
 3 - number, height of cloud peak
-4 - number, particel lifetime
+4 - number, particle lifetime
 5 - number, vertical speed for cloud rising (m/s)
 */
 

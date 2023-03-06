@@ -118,7 +118,14 @@ if (_effects # 2) then
 //fireball and light
 if (_effects # 3) then
 {
-	[_object, _radFireball] remoteExec ["freestylesNuclearBlast_fnc_flash", 0];
+	if (_yield <= 2.5) then
+	{
+		[_object, _radFireball, _radFireball, 5] remoteExec ["freestylesNuclearBlast_fnc_flash", 0];
+	}
+	else
+	{
+		[_object, _radFireball, _rad20psi * 1.1, 50] remoteExec ["freestylesNuclearBlast_fnc_flash", 0];
+	};
 };
 
 
@@ -150,6 +157,7 @@ if (_effects # 4) then
 
 if ((_effects # 6) and (_yield > 2.5)) then
 {
+	sleep 8; // wait for fireball to start rising
 	[_object, _radFireball, _rad20psi, _rad20psi * 1.4, _lifetimeLong, 50] remoteExec ["freestylesNuclearBlast_fnc_mushroomCloud", 0];
 };
 
