@@ -86,3 +86,28 @@ for "_i" from 0 to _num do {
 	
 	_curAngle = _curAngle + _angleInc;
 };
+
+
+//create a decal and scale it
+_obj = createVehicle ["Land_DirtPatch_02_F", _position, [], 0, "CAN_COLLIDE"];
+_obj setObjectScale _radius / 4;
+_obj enableSimulationGlobal false;
+
+/* PLEASE NO!
+//create crater
+_curRadius = _radius;
+while {_curRadius > 0} do
+{
+	for "_i" from 0 to _num do {
+
+		//calculate position for next wall
+		_curPos = [(_position # 0) + (cos _curAngle) * _curRadius, (_position # 1) + (sin _curAngle) * _curRadius, _position # 2];
+		
+		setTerrainHeight [[[_curPos # 0, _curPos # 1, (getTerrainHeight _curPos) - _radius * 0.5]]];
+		
+		_curAngle = _curAngle + _angleInc;
+	};
+	_curRadius = _curRadius - 1;
+};
+
+*/
