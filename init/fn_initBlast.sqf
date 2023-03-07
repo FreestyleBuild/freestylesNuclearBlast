@@ -22,6 +22,7 @@ Arguments:
 	8 - lingering smoke
 	9 - mushroom cloud
 4 - number, fire propability, use -1 to disable
+5 - number, duration of radiation zone around blast area in minutes, -1 to disable
 
 */
 
@@ -34,7 +35,7 @@ if (!isServer) exitWith
 	};
 };
 
-params["_origin", "_yield", ["_debug", true], ["_effects", [true, true, true, true, true, true, true, true, true, true]], ["_fires", 0.1]];
+params["_origin", "_yield", ["_debug", true], ["_effects", [true, true, true, true, true, true, true, true, true, true]], ["_fires", 0.1], ["_staticRadiation", - 1]];
 
 private ["_radiationScript", "_shockwaveScript", "_spikesLarge", "_spikesSmall"];
 
@@ -79,3 +80,9 @@ if (_effects # 0) then
 _effects deleteRange [0, 3];
 
 [_origin, _yield, _effects, _radFireball, _rad20psi, _rad1psi, 300, 40] spawn freestylesNuclearBlast_fnc_effectsControll;
+
+
+if (_staticRadiation != -1) then
+{
+	[_origin, _radCrater, _radFireball * 2, 30, 180, 0.5, 0.2, 2 * _staticRadiation] spawn freestylesNuclearBlast_fnc_staticRadiation;
+};

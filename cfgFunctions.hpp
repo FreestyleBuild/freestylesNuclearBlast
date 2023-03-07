@@ -23,6 +23,7 @@ class freestylesNuclearBlast
 		class 20psiEffects {};
 		class 5psiEffects {};
 		class 1psiEffects {};
+		class staticRadiation {};
 	};
 	
 	class misc_fncs
