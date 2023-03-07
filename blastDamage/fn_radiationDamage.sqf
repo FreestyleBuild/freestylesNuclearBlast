@@ -3,7 +3,7 @@
 freestylesNuclearBlast_fnc_radiationDamage
 
 Apply radiation damage to units in blast area. Includes nuclear radioation and thermal.
-Amount of damage depends on zones for each category, damage between categores can add up.
+Amount of damage depends on zones for each category, damage between categories can add up.
 
 
 Arguments:
@@ -67,7 +67,7 @@ _radiationDamage = [];
 	};
 	
 	
-	//adjust if 5000 rem applies
+	//adjust if 100 % applies
 	if ((_position distance _x) < _100burn) then
 	{
 		_baseDam = 0.3;
@@ -79,7 +79,7 @@ _radiationDamage = [];
 	
 	_burnDamage pushBack _baseDam;
 	
-} forEach _radiatedUnits;
+} forEach _burnedUnits;
 
 
 //apply the calculated damage
