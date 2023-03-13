@@ -2,7 +2,7 @@
 
 freestylesNuclearBlast_fnc_staticRadiation
 
-Apply radiation damage to units which enter blast area after wards.
+Apply radiation damage to units which enter blast area afterwards.
 
 
 Arguments:

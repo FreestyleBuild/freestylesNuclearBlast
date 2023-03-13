@@ -24,6 +24,7 @@ class freestylesNuclearBlast
 		class 5psiEffects {};
 		class 1psiEffects {};
 		class staticRadiation {};
+		class terrainCrater {};
 	};
 	
 	class misc_fncs

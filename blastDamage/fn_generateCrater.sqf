@@ -26,15 +26,15 @@ _radius = ((_radius ^ 2) - (((_position # 2) - (getTerrainHeightASL _position)) 
 if (_radius <= 0) exitWith{};
 
 //get objects inside crater which need to be hidden
-_hideObjs = nearestTerrainObjects [[_position # 0, _position # 1, 0], [], _radius];
-_hideObjs append ([_position # 0, _position # 1, 0] nearObjects _radius);
+_hideObjs = nearestTerrainObjects [[_position # 0, _position # 1], [], _radius];
+_hideObjs append ([_position # 0, _position # 1] nearObjects _radius);
 
 //hide the objects
 {
 	if ((isDamageAllowed _x) and not (isPlayer _x)) then 
 	{
-		_x hideObjectGlobal true;
 		_x setDamage [1, false]; //destroy objects, does not need to be ace compatible
+		_x hideObjectGlobal true;
 	};	
 } forEach _hideObjs;
 
@@ -93,21 +93,5 @@ _obj = createVehicle ["Land_DirtPatch_02_F", _position, [], 0, "CAN_COLLIDE"];
 _obj setObjectScale _radius / 4;
 _obj enableSimulationGlobal false;
 
-/* PLEASE NO!
-//create crater
-_curRadius = _radius;
-while {_curRadius > 0} do
-{
-	for "_i" from 0 to _num do {
-
-		//calculate position for next wall
-		_curPos = [(_position # 0) + (cos _curAngle) * _curRadius, (_position # 1) + (sin _curAngle) * _curRadius, _position # 2];
-		
-		setTerrainHeight [[[_curPos # 0, _curPos # 1, (getTerrainHeight _curPos) - _radius * 0.5]]];
-		
-		_curAngle = _curAngle + _angleInc;
-	};
-	_curRadius = _curRadius - 1;
-};
-
-*/
+// create deformation
+[_position, _radius, (_radius * 0.5) min 500] call freestylesNuclearBlast_fnc_terrainCrater;
