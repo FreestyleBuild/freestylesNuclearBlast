@@ -44,7 +44,7 @@ if (_effects # 0) then
 		_spikeSpeed = 40 * (0.9 * _yield + 0.73);
 		_spikesLarge = [];
 		
-		_spikeScript = [_position, ceil ((random 3) + 4) * (0.9 * _yield + 0.73) + 3, _spikeSpeed, "B_556x45_Ball", _spikesLarge, 0.5, 0.1] spawn freestylesNuclearBlast_fnc_spikeSpawner;
+		_spikeScript = [_position, ceil ((random 3) + 4) * (0.9 * _yield + 0.73) + 5, _spikeSpeed, "B_556x45_Ball", _spikesLarge, 0.5, 0.1] spawn freestylesNuclearBlast_fnc_spikeSpawner;
 		
 		waitUntil {scriptDone _spikeScript};
 		
@@ -55,7 +55,7 @@ if (_effects # 0) then
 		_spikeSpeed = 90 * (0.9 * _yield + 0.73);
 		_spikesSmall = [];
 		
-		_spikeScript = [_position, ceil ((random 5) + 14) * (0.9 * _yield + 0.73) + 5, _spikeSpeed, "B_556x45_Ball", _spikesSmall, 0.6, 0.2] spawn freestylesNuclearBlast_fnc_spikeSpawner;
+		_spikeScript = [_position, ceil ((random 5) + 14) * (0.9 * _yield + 0.73) + 7, _spikeSpeed, "B_556x45_Ball", _spikesSmall, 0.6, 0.2] spawn freestylesNuclearBlast_fnc_spikeSpawner;
 		
 		waitUntil {scriptDone _spikeScript};
 		
