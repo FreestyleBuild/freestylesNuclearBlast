@@ -10,13 +10,14 @@ Arguments:
 0 - object, source object for fireball
 1 - number, fireball radius
 2 - number, hight to which fireball rises
-3 - numbner, speed at which fireball rises per second
+3 - number, speed at which fireball rises per second
+4 - number, distance at which light start to fade
 */
 
 if (!hasInterface) exitWith {};
 
 
-params["_object", "_radius", "_finalHeight", "_vSpeed"];
+params["_object", "_radius", "_finalHeight", "_vSpeed", "_lightFadeDist"];
 
 private["_light", "_brigthness", "_fire", "_height", "_fade"];
 
@@ -33,11 +34,12 @@ _light setLightUseFlare true;
 _light setLightFlareSize (_radius * 15);
 _light setLightDayLight true;
 _light setLightFlareMaxDistance 100000;
+_light setLightAttenuation [_lightFadeDist, 0, 0, 4.31918e-005];
 
 
 
 //create fireball
-_fire = "Sign_Sphere100cm_F" createVehicleLocal [0,0,0];
+_fire = "Sign_Sphere100cm_Geometry_F" createVehicleLocal [0,0,0];
 _fire attachTo [_object, [0,0,0]];
 
 [_fire, _radius * 2.5] spawn
@@ -67,7 +69,7 @@ _fire attachTo [_object, [0,0,0]];
 };
 
 _light setLightColor [1,0.7,0.3];
-_light setLightAmbient [1,0.7,0.3];
+
 //create initial flash (0.3 sec + 0.2 sec)
 sleep 0.3;
 for "_i" from 1 to 10 do
@@ -99,7 +101,7 @@ for "_i" from 1 to 100 do
 	_light setLightIntensity _brigthness;
 	_light setLightFlareSize (_radius * (_i * (- 14/100) + 15));
 	_light setLightColor [1,0.7 - (0.4/100 * _i),0.3  - (0.3/100 * _i)];
-	_light setLightAmbient [1,0.7 - (0.4/100 * _i),0.3  - (0.3/100 * _i)];
+	//_light setLightAmbient [1,0.7 - (0.4/100 * _i),0.3  - (0.3/100 * _i)];
 	
 	if (_height < _finalHeight) then
 	{
@@ -144,10 +146,9 @@ while {_height < _finalHeight} do
 // let light fade out (~20 sec)
 
 
-
+_fade = (_brigthness / 50) max 10;
 while{_brigthness > 0} do 
 {	
-		_fade = (_brigthness / 50) min 10;
 		_brigthness = _brigthness - _fade;		
 		_light setLightIntensity _brigthness;
 		

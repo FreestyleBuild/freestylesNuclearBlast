@@ -120,11 +120,11 @@ if (_effects # 3) then
 {
 	if (_yield <= 2.5) then
 	{
-		[_object, _radFireball, _radFireball, 5] remoteExec ["freestylesNuclearBlast_fnc_flash", 0];
+		[_object, _radFireball / 2, _radFireball / 2, 5, _rad1psi] remoteExec ["freestylesNuclearBlast_fnc_flash", 0];
 	}
 	else
 	{
-		[_object, _radFireball, _rad20psi * 1.1, 50] remoteExec ["freestylesNuclearBlast_fnc_flash", 0];
+		[_object, _radFireball, _rad20psi * 1.1, 50, _rad1psi] remoteExec ["freestylesNuclearBlast_fnc_flash", 0];
 	};
 };
 

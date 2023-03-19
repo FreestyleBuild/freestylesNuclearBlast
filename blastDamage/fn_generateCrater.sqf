@@ -45,14 +45,13 @@ if (_radius < 10) exitWith {
 	createVehicle ["Land_ShellCrater_02_extralarge_F", _position, [], 0, "CAN_COLLIDE"];
 };
 
-
+/* Used for crater walls, disabled for now
 //calculate height offset, used for smaller craters to not create too high crater walls
 _heightOffset = 0;
 if (_radius < 50) then {
 	_heightOffset = -50 + _radius;
 	_heightOffset = _heightOffset / 10;
 };
-
 
 //generate the crater
 
@@ -86,8 +85,7 @@ for "_i" from 0 to _num do {
 	
 	_curAngle = _curAngle + _angleInc;
 };
-
-
+*/
 //create a decal and scale it
 _obj = createVehicle ["Land_DirtPatch_02_F", _position, [], 0, "CAN_COLLIDE"];
 _obj setObjectScale _radius / 4;
