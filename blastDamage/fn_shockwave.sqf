@@ -24,7 +24,7 @@ private["_trees", "_buildings", "_vehicles", "_units", "_ringWidth", "_iteration
 //get affected objects, sorted by proximity (except for trees)
 _trees = nearestTerrainObjects [_position, ["TREE", "SMALL TREE", "BUSH", "FOREST","FOREST BORDER", "FOREST TRIANGLE", "FOREST SQUARE"], _rad20psi, false];
 _buildings = nearestObjects [_position ,["Building"], _rad1psi];
-_vehicles =  nearestObjects [_position, ["Car", "LandVehicles", "Air", "Ship"], _rad1psi];
+_vehicles =  nearestObjects [_position, ["Car", "LandVehicles", "Air", "Ship", "Tank"], _rad1psi];
 _units = _position nearObjects ["Man", _rad1psi];
 
 
