@@ -23,7 +23,7 @@ _radius = ((_radius ^ 2) - (((_position # 2) - (getTerrainHeightASL _position)) 
 
 
 //exit if crater is to smalll
-if (_radius <= 0 or (typeName _this != "SCALAR")) exitWith{};
+if (_radius <= 0 or (typeName _radius != "SCALAR")) exitWith{};
 
 //get objects inside crater which need to be hidden
 _hideObjs = nearestTerrainObjects [[_position # 0, _position # 1], [], _radius];
