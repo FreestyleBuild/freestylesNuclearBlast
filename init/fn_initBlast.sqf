@@ -51,7 +51,8 @@ missionNamespace setVariable ["FNB_aceActivated", isClass(configFile >> "CfgPatc
 //debug outputs
 if (_debug) then 
 {
-	[_origin, _radFireball, _rad1psi, _rad5psi, _rad20psi, _rad5000rem, _rad500rem, _rad100thermal, _rad50thermal, _radCrater] spawn freestylesNuclearBlast_fnc_debugOutput;	
+	[_origin, _radFireball, _rad1psi, _rad5psi, _rad20psi, _rad5000rem, _rad500rem, _rad100thermal, _rad50thermal, _radCrater] spawn freestylesNuclearBlast_fnc_debugOutput;
+	systemChat str(_origin);
 };
 
 

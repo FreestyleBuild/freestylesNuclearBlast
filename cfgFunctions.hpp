@@ -2,7 +2,7 @@ class freestylesNuclearBlast
 {
 	class blast_fx
 	{
-		file = "freestylesNuclearBlast\blastFx";
+		file = "FreestylesNuclearBombs\freestylesNuclearBlast\blastFx";
 		class spikeSpawner {};
 		class smokeSpikes {};
 		class dustWave {};
@@ -16,7 +16,7 @@ class freestylesNuclearBlast
 	
 	class blast_damage
 	{
-		file = "freestylesNuclearBlast\blastDamage";
+		file = "FreestylesNuclearBombs\freestylesNuclearBlast\blastDamage";
 		class generateCrater {};
 		class radiationDamage {};
 		class shockwave {};
@@ -29,7 +29,7 @@ class freestylesNuclearBlast
 	
 	class misc_fncs
 	{
-		file = "freestylesNuclearBlast\misc";
+		file = "FreestylesNuclearBombs\freestylesNuclearBlast\misc";
 		class applyDamage {};
 		class damageOverTime {};
 		class damageBuildings {};
@@ -40,7 +40,7 @@ class freestylesNuclearBlast
 	
 	class init_fnc
 	{
-		file = "freestylesNuclearBlast\init";
+		file = "FreestylesNuclearBombs\freestylesNuclearBlast\init";
 		class initBlast {}; //freestylesNuclearBlast_fnc_initBlast
 		class debugOutput {};
 		class calculateRanges {};
@@ -48,14 +48,14 @@ class freestylesNuclearBlast
 	
 	class ui_effects
 	{
-		file = "freestylesNuclearBlast\uiEffects";
+		file = "FreestylesNuclearBombs\freestylesNuclearBlast\uiEffects";
 		class radiatedUI {};
 		class spawnRadiationEffects {};
 	};
 	
 	class fire
 	{
-		file = "freestylesNuclearBlast\fire";
+		file = "FreestylesNuclearBombs\freestylesNuclearBlast\fire";
 		class createFire {};
 		class fireSound {};
 		class spawnFires {};
